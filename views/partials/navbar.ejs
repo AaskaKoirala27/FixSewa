@@ -1,0 +1,29 @@
+<nav class="navbar">
+  <div class="logo">
+    <a href="/">Fix<span class="com">Sewa</span></a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <% if (typeof user !== 'undefined' && user) { %>
+      <% if (user.role === 'worker') { %>
+        <li><a href="/worker-dashboard">Worker Dashboard</a></li>
+      <% } else { %>
+        <li><a href="/customer-dashboard">My Account</a></li>
+      <% } %>
+    <% } %>
+  </ul>
+  <% if (typeof user !== 'undefined' && user) { %>
+    <div class="user-info">
+      <span>Welcome, <%= user.name %></span>
+      <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+  <% } else { %>
+    <div class="auth-buttons">
+      <a href="/login" class="login-btn">Sign in</a>
+      <a href="/become-worker" class="worker-btn">Become a Worker</a>
+    </div>
+  <% } %>
+</nav>
